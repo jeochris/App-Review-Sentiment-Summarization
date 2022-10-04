@@ -15,7 +15,7 @@ from transformers import PreTrainedTokenizerFast
 from transformers import BartForConditionalGeneration
 
 class Topic_Modeling(object):
-    def __init__(self, result_df, sentiment_opt):
+    def __init__(self, result_df, sentiment_opt, app_name, target_rating):
         self.result_df = result_df
         self.sentiment_opt = sentiment_opt
         self.stopwords_list = ["!","\"","$","%","&","'","(",")","*","+",",","-",".","...","0","1","2","3","4","5","6","7","8","9",";","<","=",">","?","@","\\","^","_","`","|","~","·",
@@ -34,6 +34,9 @@ class Topic_Modeling(object):
         self.okt = Okt()
         self.words_list = []
         self.topic_count = 0
+
+        self.app_name = app_name
+        self.target_rating = target_rating
 
     #전처리 함수
     def to_words(self, corpus):
@@ -66,7 +69,7 @@ class Topic_Modeling(object):
 
         print('nouns for first sentence :', self.words_list[0])
 
-        topic_model = BERTopic(embedding_model="sentence-transformers/xlm-r-100langs-bert-base-nli-stsb-mean-tokens", language="korean", calculate_probabilities=True, nr_topics =30, top_n_words=5)
+        topic_model = BERTopic(language="korean", calculate_probabilities=True, verbose=True, nr_topics =20, top_n_words=5)
         topics_im, probs_im = topic_model.fit_transform(self.words_list)
 
         df_with_topic = pd.DataFrame({'Topic':topics_im, 'Review_word': target })
@@ -75,28 +78,27 @@ class Topic_Modeling(object):
         self.topic_info_im = topic_model.get_topic_info()
 
         self.topic_count = len(self.topic_info_im['Topic'])
-        print(self.topic_count)
+        self.start_topic_idx = int(self.topic_info_im.iloc[0]['Topic'])
         print(self.topic_info_im)
+        print()
 
         topic_index = [] #topic 의 index가 담긴 list
         for i in range(self.topic_count):
-            i -= 1
-            topic_index.append(df_with_topic[df_with_topic.Topic== i].index)
+            cur_idx = self.start_topic_idx + i
+            topic_index.append(df_with_topic[df_with_topic.Topic== cur_idx].index)
 
         self.topic_df_list = []
         for i in range(self.topic_count):
             i -= 1
             self.topic_df_list.append(reviews[topic_index[i+1]])
-        
-        print(self.topic_df_list[0])
-        print()
 
     def summary(self):
         tokenizer = PreTrainedTokenizerFast.from_pretrained('gogamza/kobart-summarization')
         model = BartForConditionalGeneration.from_pretrained('gogamza/kobart-summarization')
 
+        topic_and_summary = pd.DataFrame(columns=['Topic', 'Topic_Text', 'Summary'])
+
         for i in range(self.topic_count):
-            print(self.topic_info_im[self.topic_info_im['Topic']==i-1]['Name'])
 
             topic_sen = ''
             for line in self.topic_df_list[i]:
@@ -104,7 +106,6 @@ class Topic_Modeling(object):
                 topic_sen += '. '
 
             topic_sen = topic_sen[:2000]
-            print(topic_sen)
 
             raw_input_ids = tokenizer.encode(topic_sen)
             input_ids = [tokenizer.bos_token_id] + raw_input_ids + [tokenizer.eos_token_id]
@@ -120,6 +121,8 @@ class Topic_Modeling(object):
                     num_beams=4 ,       # 문장 생성시 다음 단어를 탐색하는 영역의 개수 
                 )
                 topic_summ = tokenizer.decode(summary_text_ids[0], skip_special_tokens=True)
-                print(topic_summ)
+                topic_and_summary.loc[i] = [self.topic_info_im.iloc[i]['Name'], topic_sen[:500], topic_summ]
             except:
-                print('review too long to summarize')
+                topic_and_summary.loc[i] = [self.topic_info_im.iloc[i]['Name'], topic_sen[:500], 'review too long to summarize']
+
+        topic_and_summary.to_excel(f'./topic_and_summary_{self.app_name}_{self.target_rating}_{self.sentiment_opt}.xlsx')

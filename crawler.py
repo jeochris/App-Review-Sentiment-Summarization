@@ -14,9 +14,10 @@ import time
 import random
 
 class Crawler(object):
-    def __init__(self, app_name):
+    def __init__(self, app_name, target_rating):
         self.json_file = None
         self.app_name = app_name
+        self.target_rating = target_rating
 
         #User-Agent 지정
         self.headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'}
@@ -138,15 +139,21 @@ class Crawler(object):
         if review_count > 3000:
             review_count = 3000
 
+        user_cnt = 0
         for count in range(review_count):
+
             count += 1
             try:
                 review_dict = {}
                 id_ = self.browser.find_element(by = By.XPATH, value = self.id_start + str(count) + self.id_end).text
                 date_ = self.browser.find_element(by = By.XPATH, value = self.date_start + str(count) + self.date_end).text
-        #        rating_ = browser.find_element(by = By.XPATH, value = rating_start + str(count) + rating_end).text
+                # rating_ = self.browser.find_element(by = By.XPATH, value = self.rating_start + str(count) + self.rating_end).text
                 review_ = self.browser.find_element(by = By.XPATH, value = self.review_start + str(count) + self.review_end).text
             #    useful_ = browser.find_element(by = By.XPATH, value = useful_start + str(count) + useful_end).text
+
+                if self.target_rating != None:
+                    if int(rating_list[count-1]) != int(self.target_rating):
+                        continue
 
                 review_dict['id'] = id_
                 review_dict['date'] = date_
@@ -154,7 +161,8 @@ class Crawler(object):
                 review_dict['review'] = review_
             #    review_dict['useful'] = useful_
 
-                self.review_dict_total['user_' + str(count)] = review_dict
+                user_cnt += 1
+                self.review_dict_total['user_' + str(user_cnt)] = review_dict
             except:
                 continue
 
