@@ -88,7 +88,8 @@ class Crawler(object):
         try:
             self.browser.find_element(by = By.XPATH, value = '//*[@id="yDmH0d"]/c-wiz[2]/div/div/c-wiz/c-wiz[1]/c-wiz/section/div/div/a').click()
         except:
-            self.browser.find_element(by = By.XPATH, value = '///*[@id="yDmH0d"]/c-wiz[2]/div/div/c-wiz/c-wiz[1]/c-wiz/section/div/div/div/div/div[1]/div[1]').click()
+            self.browser.find_element(by = By.XPATH, value = '//*[@id="yDmH0d"]/c-wiz[2]/div/div/c-wiz/c-wiz[1]/c-wiz/section/div/div/div/div/div[1]/div[1]').click()
+        # self.browser.find_element(by = By.XPATH, value = '//*[@id="yDmH0d"]/c-wiz[2]/div/div/c-wiz/c-wiz[1]/c-wiz/section/div/div/div/div/div[1]/div[1]').click()
 
         # 크롤링할 리뷰 개수
         review_count = WebDriverWait(self.browser, 2).until(EC.visibility_of_element_located((By.XPATH, self.review_num)))

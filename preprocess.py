@@ -9,6 +9,7 @@ class Preprocess(object):
 
         self.review_dict_total = review_dict_total
         self.result_sentences = []
+        self.result_sentences_df = None
 
     def CustomTokenizer(self, corpus, stop = ['Josa','Suffix','Punctuation', 'Foreign', 'Number']):
         tokenized = []
@@ -87,5 +88,7 @@ class Preprocess(object):
 
         print(self.result_sentences)
 
+        self.result_sentences_df = pd.DataFrame(self.result_sentences)
+        self.result_sentences_df.columns = ['Review']
 
-
+        print(self.result_sentences_df[:5])
