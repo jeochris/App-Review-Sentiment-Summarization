@@ -75,7 +75,7 @@ class Crawler(object):
                 except:
                     # 스크롤 완료 경우
                     if new_height == last_height:
-                        print("스크롤 완료")
+                        print("scrolled")
                         break
                     last_height = new_height
         except: 
@@ -94,7 +94,6 @@ class Crawler(object):
         # 크롤링할 리뷰 개수
         review_count = WebDriverWait(self.browser, 2).until(EC.visibility_of_element_located((By.XPATH, self.review_num)))
         review_count = self.browser.find_element(by = By.XPATH, value = self.review_num).text
-        print(review_count)
 
         ten_thousand = '만' in review_count
         thousand = '천' in review_count
@@ -116,6 +115,7 @@ class Crawler(object):
             review_count = review_count[start+2:end]
 
         review_count = int(review_count)
+        print('review count :', review_count)
 
         WebDriverWait(self.browser, 2).until(EC.visibility_of_element_located((By.XPATH, self.all_review)))
         self.browser.find_element(by = By.XPATH, value = self.all_review).click()   
@@ -134,6 +134,9 @@ class Crawler(object):
         for review in review_source:
             rating = review.find_all(class_ = "iXRFPc")[0]['aria-label'][10] # 평점 데이터 추출
             rating_list.append(rating)
+
+        if review_count > 3000:
+            review_count = 3000
 
         for count in range(review_count):
             count += 1
@@ -155,4 +158,4 @@ class Crawler(object):
             except:
                 continue
 
-        print(self.review_dict_total)
+        print('review from user1 :', self.review_dict_total['user_1']['review'])

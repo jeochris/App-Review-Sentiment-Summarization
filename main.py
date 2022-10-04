@@ -2,12 +2,16 @@ import argparse
 
 from crawler import Crawler
 from preprocess import Preprocess
-from kobert_classifier import FineTuned_KoBERT, BERTClassifier
+from kobert_classifier import FineTuned_KoBERT
+from topic_summary import Topic_Modeling
 
 def main():
     parser = argparse.ArgumentParser(description='Baseline')
     parser.add_argument('--app_name', type=str, metavar='app_name', help='App Name')
+    parser.add_argument('--sentiment', type=str, metavar='sentiment', help='Target Sentiment')
     args = parser.parse_args()
+
+    # print(args.sentiment) # positive, negative, personal
 
     # crawl reviews
     crawler = Crawler(args.app_name)
@@ -19,6 +23,10 @@ def main():
 
     classifier = FineTuned_KoBERT(preprocess.result_sentences_df)
     classifier.inference()
+
+    topic_modeling = Topic_Modeling(classifier.result, args.sentiment)
+    topic_modeling.retrive_topic()
+    topic_modeling.summary()
 
 if __name__ == '__main__':
 	main()

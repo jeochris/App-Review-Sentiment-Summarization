@@ -61,6 +61,7 @@ class FineTuned_KoBERT(object):
         self.sentence_df = sentence_df
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.predicts = []
+        self.result = None
 
     ## Label 예측에 사용될 함수 정의
     def calc_pre(self, X, Y):
@@ -120,9 +121,9 @@ class FineTuned_KoBERT(object):
                 predict_labels.append(2)
 
         final = pd.DataFrame({'Review' : data.iloc[:,0],
-                'Predict Label': predict_labels})
+                'Label': predict_labels})
         
-        final.to_excel('./Predict_Data.xlsx', index=False)
+        final.to_excel('./predicted_reviews.xlsx')
 
         return(final)
     
@@ -134,6 +135,6 @@ class FineTuned_KoBERT(object):
         model = BERTClassifier(bertmodel, dr_rate=0.5).to(self.device)
         model.load_state_dict(torch.load('./finetuned_bertmodel.pt', map_location=self.device))
 
-        result = self.predict(self.sentence_df, model, vocab)
+        self.result = self.predict(self.sentence_df, model, vocab)
 
-        print(result[:5])
+        print('predicted label for first sentence :', self.result.iloc[0]['Label'])

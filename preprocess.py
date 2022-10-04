@@ -86,9 +86,8 @@ class Preprocess(object):
                 else: 
                     self.result_sentences.append(sentence)
 
-        print(self.result_sentences)
+        print('preprocessed sentences :', len(self.result_sentences))
+        print('first sentence :', self.result_sentences[0])
 
         self.result_sentences_df = pd.DataFrame(self.result_sentences)
         self.result_sentences_df.columns = ['Review']
-
-        print(self.result_sentences_df[:5])
