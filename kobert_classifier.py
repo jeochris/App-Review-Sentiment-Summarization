@@ -57,11 +57,12 @@ class BERTClassifier(nn.Module):
         return self.classifier(out)
 
 class FineTuned_KoBERT(object):
-    def __init__(self, sentence_df):
+    def __init__(self, sentence_df, app_name):
         self.sentence_df = sentence_df
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.predicts = []
         self.result = None
+        self.app_name = app_name
 
     ## Label 예측에 사용될 함수 정의
     def calc_pre(self, X, Y):
@@ -123,7 +124,7 @@ class FineTuned_KoBERT(object):
         final = pd.DataFrame({'Review' : data.iloc[:,0],
                 'Label': predict_labels})
         
-        final.to_excel('./predicted_reviews.xlsx')
+        final.to_excel(f'./result/sentiment/predicted_reviews_{self.app_name}.xlsx')
 
         return(final)
     

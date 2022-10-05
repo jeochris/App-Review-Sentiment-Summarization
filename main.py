@@ -22,7 +22,7 @@ def main():
     preprocess = Preprocess(crawler.review_dict_total)
     preprocess.preprocess()
 
-    classifier = FineTuned_KoBERT(preprocess.result_sentences_df)
+    classifier = FineTuned_KoBERT(preprocess.result_sentences_df, args.app_name)
     classifier.inference()
 
     topic_modeling = Topic_Modeling(classifier.result, args.sentiment, args.app_name, args.rating)

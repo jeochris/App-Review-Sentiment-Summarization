@@ -73,7 +73,7 @@ class Topic_Modeling(object):
         topics_im, probs_im = topic_model.fit_transform(self.words_list)
 
         df_with_topic = pd.DataFrame({'Topic':topics_im, 'Review_word': target })
-        df_with_topic.to_excel('./review_nouns_topic.xlsx')
+        df_with_topic.to_excel(f'./result/topic/review_nouns_topic_{self.app_name}_{self.target_rating}_{self.sentiment_opt}.xlsx')
 
         self.topic_info_im = topic_model.get_topic_info()
 
@@ -125,4 +125,4 @@ class Topic_Modeling(object):
             except:
                 topic_and_summary.loc[i] = [self.topic_info_im.iloc[i]['Name'], topic_sen[:500], 'review too long to summarize']
 
-        topic_and_summary.to_excel(f'./topic_and_summary_{self.app_name}_{self.target_rating}_{self.sentiment_opt}.xlsx')
+        topic_and_summary.to_excel(f'./result/summary/topic_and_summary_{self.app_name}_{self.target_rating}_{self.sentiment_opt}.xlsx')

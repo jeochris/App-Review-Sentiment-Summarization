@@ -136,8 +136,8 @@ class Crawler(object):
             rating = review.find_all(class_ = "iXRFPc")[0]['aria-label'][10] # 평점 데이터 추출
             rating_list.append(rating)
 
-        if review_count > 3000:
-            review_count = 3000
+        if review_count > 10000:
+            review_count = 10000
 
         user_cnt = 0
         for count in range(review_count):
