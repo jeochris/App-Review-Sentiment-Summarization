@@ -1,5 +1,5 @@
 # App-Review-Sentiment-Summarization
-기획자
+(한두줄요약)
 
 ## Collaborators
 김종민, 김한빈, 송규원, 엄소은, 전재현, 차혜준
@@ -7,6 +7,11 @@
 ## Overview
 (발표 pdf 링크)
 (뭐를 한건지)
+
+## more logic?
+crawling & preprocessing
+kobert accuracy result
+등등
 
 ## Dependencies
 
@@ -26,7 +31,12 @@ cd App-Review-Sentiment-Summarization
 pip install -r requirements.txt
 ```
 
-3. Run code with your choice. - For example,
+3. Download our fine-tuned KoBERT model.
+```
+https://drive.google.com/file/d/10N0RprpvGZwnpguET_KL35Db11owD10O/view?usp=sharing
+```
+
+4. Run code with your option. - For example,
 ```
 python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 ```
@@ -40,6 +50,9 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
   * Three options {negative, positive, personal}
   
 ## Result
-(excel)  
+(excel)
+
+## File Description
+
 
 ## Reference
