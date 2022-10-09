@@ -5,7 +5,8 @@
 김종민, 김한빈, 송규원, 엄소은, 전재현, 차혜준
 
 ## Overview
-(발표 pdf 링크)
+[Presentation PDF](https://github.com/jeochris/App-Review-Sentiment-Summarization/blob/main/F%EC%A1%B0_%EC%97%B0%EC%96%B4%EB%93%A4_%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf)
+
 (뭐를 한건지)
 
 ## more logic?
