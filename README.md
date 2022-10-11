@@ -13,7 +13,7 @@
 ![image](https://user-images.githubusercontent.com/72757567/194735017-3a5f7793-e91d-494c-89c2-1e7fdab443ab.png)
 
 **1. 개요**
-- Motivation : 
+- Motivation 등등
 - ㄹㄹㄹ
 
 **2. 리뷰 데이터 확보**
@@ -40,15 +40,30 @@
   - 일반 : 개인적인 이야기, 의미없는 이야기 등 기타 문장에 대한 클래스
   - [라벨링 결과](https://github.com/jeochris/App-Review-Sentiment-Summarization/blob/main/data/labeling_total.xlsx)
 - pre-trained KoBERT를 활용하여 4가지 클래스로 분류하는 classification fine-tuning 진행
+- 자세한 코드는 model/kobert_finetune/Train_Test_Accuracy.ipynb 파일 확인
 
 ![image](https://user-images.githubusercontent.com/72757567/195069618-c1c59a66-a3f5-4314-a777-6fbf40abb72b.png)
 
-- 모델 성능 향상 과정
-  - 부정, 개선 클래스 분류 기준 모호 -> 부정, 개선 클래스 합쳐 3가지 클래스로 분류하도록
-  - 외부 데이터 함께 활용 : 비슷한 특성의 데이터셋인 [Naver 영화 리뷰 데이터셋](https://github.com/e9t/nsmc/)
+- 모델 성능 향상 과정 (10 epoch 기준)
+  - 기존 : test 기준 73%
+  - 부정, 개선 클래스 분류 기준 모호 -> 부정, 개선 클래스 합쳐 3가지 클래스로 분류하도록 : test 기준 85%
+  - 외부 데이터 함께 활용 : 비슷한 특성의 데이터셋인 [Naver 영화 리뷰 데이터셋](https://github.com/e9t/nsmc/) : test 기준 87%
   - 일반 클래스 데이터 부족하여 데이터 증강 (5에서 이어짐)
   
 ![image](https://user-images.githubusercontent.com/72757567/195069483-0927c691-d126-468f-8483-edd8452c5a8f.png)
+
+**5. 리뷰 데이터 증강**
+- 일반 클래스 리뷰 데이터가 부족하여 이에 대해 데이터 증강 -> 1201개의 일반 문장 확보
+- Easy Data Augmentation (EDA) 방식을 활용
+  - SR, RI, RD, RS를 stochastic하게 적용
+- 모델 성능은 오히려 감소
+  - 증강 전 데이터 자체가 부족, 일반 문장 간의 공통점이 적기 때문인 것으로 판단
+
+**6. 토픽 모델링**
+- BERTopic 활용 : 토픽 모델링 기법으로서, BERT 기반의 embedding + class-based TF-IDF 활용
+- 각 감정 클래스 내에서 BERTopic 수행
+  - 보다 좋은 토픽 추출을 위해 각 문장에서 명사만 남기고 BERTopic 수행
+
 
 
 ## more logic?
@@ -119,6 +134,7 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 - BERTopic
   - https://arxiv.org/abs/2203.05794
   - https://maartengr.github.io/BERTopic/index.html
+  - https://dacon.io/en/competitions/official/235914/codeshare/5728
 - KoBART-summarization
   - https://github.com/seujung/KoBART-summarization
   - https://huggingface.co/gogamza/kobart-summarization
