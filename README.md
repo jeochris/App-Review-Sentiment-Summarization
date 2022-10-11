@@ -115,15 +115,26 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
   * Sentiment you want to find out.
   * Three options {negative, positive, personal}
   
-### Result
-'Sleep Cycle' 앱 기준으로 결과 확인
-1. Crawling, Preprocess, Sentiment Analysis
+## Result
+'Sleep Cycle' 앱의 부정 리뷰 기준으로 결과 확인 (`python main.py --app_name=슬립사이클 --sentiment=negative`)
 
-2. Topic Modeling
+**1. Crawling, Preprocess, Sentiment Analysis**
 
-3. Summary
+- Result : result/sentiment/predicted_reviews_슬립사이클.xlsx
 
-### Result Anaylsis
+**2. Topic Modeling**
+
+- Result : result/topic/review_nouns_topic_슬립사이클_None_negative.xlsx
+
+**3. Summary**
+
+- Result : result/summary/topic_and_summary_슬립사이클_None_negative.xlsx
+
+## Result Anaylsis
+'Sleep Cycle' 앱의 1점, 5점 리뷰 내 부정 리뷰 문장 기준으로 결과 확인 (1점 리뷰 : 이탈 예정 유저, 5점 리뷰 : 충성 유저로 간주)
+
+![image](https://user-images.githubusercontent.com/72757567/195092233-7e05867b-dca4-4de3-85b2-4ce668f84c42.png)
+![image](https://user-images.githubusercontent.com/72757567/195092307-4548089c-ef8b-4e09-8aba-78bcbe16762a.png)
 
 ## File Description
 ### main
