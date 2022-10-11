@@ -20,8 +20,8 @@
 - 플레이스토어 '수면' 키워드를 가진 앱을 기준으로 리뷰 데이터 확보
 - 총 20개 어플에서 19,833개의 리뷰 수집
 - 각 리뷰별로 user id, rating, date, review 데이터 확보
-- 자세한 코드는 data/crawling 폴더 확인
-- inference 상황에서도 동일한 crawling을 진행 - crawler.py 확인
+- 자세한 코드는 `data/crawling` 폴더 확인
+- inference 상황에서도 동일한 crawling을 진행 - `crawler.py` 확인
 
 ![image](https://user-images.githubusercontent.com/72757567/195042487-894372aa-2b7a-4ca8-912a-c9253a123999.png)
 
@@ -29,8 +29,8 @@
 - 추후 감정 분류 모델에서 발생 가능한 데이터 불균형을 해소하고자 리뷰 데이터 분포 조절
 - 리뷰 데이터 특성 상, 한 리뷰 내에 긍/부정 감정이 함께 들어있음을 확인 -> 리뷰를 문장 단위로 분리
 - 품사 수가 부족한 문장을 제거하도록 하여 의미가 크지 않은 문장을 제외
-- 자세한 코드는 data/preprocess 폴더 확인
-- inference 상황에서도 동일한 preprocess를 진행 - preprocess.py
+- 자세한 코드는 `data/preprocess` 폴더 확인
+- inference 상황에서도 동일한 preprocess를 진행 - `preprocess.py`
 
 ![image](https://user-images.githubusercontent.com/72757567/195042673-305c25c4-2fdb-42d5-85a8-445025e8dc60.png)
 
@@ -38,12 +38,12 @@
 - 전처리된 리뷰 문장을 4가지 감정 클래스로 라벨링 - 부정, 긍정, 개선, 일반
   - 개선 : 긍정에도 부정에도 속하지 않는 개선 내용을 담는 문장에 대한 클래스
   - 일반 : 개인적인 이야기, 의미없는 이야기 등 기타 문장에 대한 클래스
-  - [라벨링 결과](https://github.com/jeochris/App-Review-Sentiment-Summarization/blob/main/data/labeling_total.xlsx)
+  - 라벨링 결과 : `data/labeling_total.xlsx`
   
 ![image](https://user-images.githubusercontent.com/72757567/195073668-abfdb84b-9b1e-48aa-8b8d-604c610864f1.png)
 
 - pre-trained KoBERT를 활용하여 4가지 클래스로 분류하는 classification fine-tuning 진행
-- 자세한 코드는 model/kobert_finetune/Train_Test_Accuracy.ipynb 파일 확인
+- 자세한 코드는 `model/kobert_finetune/Train_Test_Accuracy.ipynb` 파일 확인
 
 ![image](https://user-images.githubusercontent.com/72757567/195069618-c1c59a66-a3f5-4314-a777-6fbf40abb72b.png)
 
@@ -59,8 +59,10 @@
 - 일반 클래스 리뷰 데이터가 부족하여 이에 대해 데이터 증강 -> 1201개의 일반 문장 확보
 - Easy Data Augmentation (EDA) 방식을 활용
   - SR, RI, RD, RS를 stochastic하게 적용
+  - `` 파일 확인
 - 모델 성능은 오히려 감소
   - 증강 전 데이터 자체가 부족, 일반 문장 간의 공통점이 적기 때문인 것으로 판단
+  - `model/kobert_finetune/Augemantation_Train_Test.ipynb` 파일 확인
 
 **6. 토픽 모델링**
 - BERTopic 활용 : 토픽 모델링 기법으로서, BERT 기반의 embedding + class-based TF-IDF 활용
@@ -73,6 +75,7 @@
 - pre-trained KoBART를 summarization task에 fine-tuning한 [KoBART-summarization](https://github.com/seujung/KoBART-summarization)을 활용
   - BART : Transformer의 Bidirectional Encoder, Auto-Regressive Decoder를 합쳐서 pre-train한 모델 (denoising autoencoder) 
 - 같은 토픽으로 분류된 문장끼리 모아 한 문단으로 묶은 후 KoBART-summarization 수행
+- 자세한 코드는 `model/topic_summary/review_topic_summarization.ipynb` 파일 확인
 
 ![image](https://user-images.githubusercontent.com/72757567/195087801-41dc584d-16f6-4187-b20d-349c8c86bdaf.png)
 
@@ -116,7 +119,7 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
   * Three options {negative, positive, personal}
   
 ## Result
-'Sleep Cycle' 앱의 부정 리뷰 기준으로 결과 확인 (`python main.py --app_name=슬립사이클 --sentiment=negative`)
+'Sleep Cycle' 앱의 부정 리뷰 기준으로 결과 확인 - `python main.py --app_name=슬립사이클 --sentiment=negative`
 
 **1. Crawling, Preprocess, Sentiment Analysis**
 
