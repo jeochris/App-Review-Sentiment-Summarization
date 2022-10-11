@@ -69,10 +69,12 @@
 
 ![image](https://user-images.githubusercontent.com/72757567/195073961-a128c968-4747-43b6-a2db-dbe0dabaf915.png)
 
+**7. 리뷰 요약**
+- pre-trained KoBART를 summarization task에 fine-tuning한 [KoBART-summarization](https://github.com/seujung/KoBART-summarization)을 활용
+  - BART : Transformer의 Bidirectional Encoder, Auto-Regressive Decoder를 합쳐서 pre-train한 모델 (denoising autoencoder) 
+- 같은 토픽으로 분류된 문장끼리 모아 한 문단으로 묶은 후 KoBART-summarization 수행
 
-## more logic?
-kobert accuracy result
-등등
+
 
 ## Dependencies
 
