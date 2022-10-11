@@ -22,7 +22,8 @@
 - 각 리뷰별로 user id, rating, date, review 데이터 확보
 - 자세한 코드는 data/crawling 폴더 확인
 - inference 상황에서도 동일한 crawling을 진행 - crawler.py 확인
-(사진)
+
+![image](https://user-images.githubusercontent.com/72757567/195042487-894372aa-2b7a-4ca8-912a-c9253a123999.png)
 
 **3. 데이터 전처리**
 - 추후 감정 분류 모델에서 발생 가능한 데이터 불균형을 해소하고자 리뷰 데이터 분포 조절
@@ -30,7 +31,8 @@
 - 품사 수가 부족한 문장을 제거하도록 하여 의미가 크지 않은 문장을 제외
 - 자세한 코드는 data/preprocess 폴더 확인
 - inference 상황에서도 동일한 preprocess를 진행 - preprocess.py
-(사진)
+
+![image](https://user-images.githubusercontent.com/72757567/195042673-305c25c4-2fdb-42d5-85a8-445025e8dc60.png)
 
 **4. 감정 분류**
 - 전처리된 리뷰 문장을 네 가지 감정 클래스로 라벨링 - 부정, 긍정, 개선, 일반
