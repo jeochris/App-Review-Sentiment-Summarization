@@ -4,4 +4,5 @@ __pycache__
 
 *.pt
 *.xlsx
+!labeling_total.xlsx
 *.csv
