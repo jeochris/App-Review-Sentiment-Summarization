@@ -38,12 +38,18 @@
 - 전처리된 리뷰 문장을 4가지 감정 클래스로 라벨링 - 부정, 긍정, 개선, 일반
   - 개선 : 긍정에도 부정에도 속하지 않는 개선 내용을 담는 문장에 대한 클래스
   - 일반 : 개인적인 이야기, 의미없는 이야기 등 기타 문장에 대한 클래스
-  - [라벨링 결과]()
+  - [라벨링 결과](https://github.com/jeochris/App-Review-Sentiment-Summarization/blob/main/data/labeling_total.xlsx)
 - pre-trained KoBERT를 활용하여 4가지 클래스로 분류하는 classification fine-tuning 진행
+
+![image](https://user-images.githubusercontent.com/72757567/195069618-c1c59a66-a3f5-4314-a777-6fbf40abb72b.png)
+
 - 모델 성능 향상 과정
   - 부정, 개선 클래스 분류 기준 모호 -> 부정, 개선 클래스 합쳐 3가지 클래스로 분류하도록
   - 외부 데이터 함께 활용 : 비슷한 특성의 데이터셋인 [Naver 영화 리뷰 데이터셋](https://github.com/e9t/nsmc/)
   - 일반 클래스 데이터 부족하여 데이터 증강 (5에서 이어짐)
+  
+![image](https://user-images.githubusercontent.com/72757567/195069483-0927c691-d126-468f-8483-edd8452c5a8f.png)
+
 
 ## more logic?
 kobert accuracy result
