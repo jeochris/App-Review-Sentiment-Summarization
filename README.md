@@ -109,14 +109,16 @@ https://drive.google.com/file/d/10N0RprpvGZwnpguET_KL35Db11owD10O/view?usp=shari
 ```
 python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 ```
-* app_name
-  * App you want to find out
-* rating
-  * If you want to find out reviews only with certain rating, add this option.
-  * Can be omitted.
-* sentiment
-  * Sentiment you want to find out.
-  * Three options {negative, positive, personal}
+`app_name`
+- App you want to find out
+
+`rating`
+- If you want to find out reviews only with certain rating, add this option.
+- Can be omitted.
+
+`sentiment`
+- Sentiment you want to find out.
+- Three options {negative, positive, personal}
   
 ## Result
 'Sleep Cycle' 앱의 부정 리뷰 기준으로 결과 확인 - `python main.py --app_name=슬립사이클 --sentiment=negative`
@@ -134,7 +136,8 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 - Result : result/summary/topic_and_summary_슬립사이클_None_negative.xlsx
 
 ## Result Anaylsis
-'Sleep Cycle' 앱의 1점, 5점 리뷰 내 부정 리뷰 문장 기준으로 결과 확인 (1점 리뷰 : 이탈 예정 유저, 5점 리뷰 : 충성 유저로 간주)
+'Sleep Cycle' 앱의 1점, 5점 리뷰 내 부정 리뷰 문장 기준으로 결과 확인 및 분석<br>
+(1점 리뷰 : 이탈 예정 유저, 5점 리뷰 : 충성 유저로 간주)
 
 ![image](https://user-images.githubusercontent.com/72757567/195092233-7e05867b-dca4-4de3-85b2-4ce668f84c42.png)
 ![image](https://user-images.githubusercontent.com/72757567/195092307-4548089c-ef8b-4e09-8aba-78bcbe16762a.png)
@@ -142,18 +145,29 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 ## File Description
 ### main
 - main.py : 
-- crawler.py
-- preprocess.py
-- kobert_classifier.py
-- topic_summary.py
-### model
-- kobert_finetune
-  - Train_Test_Accruacy : {우리 데이터}로 KoBERT를 fine tuning 진행 및 train test accuracy 계산
-  - Augemantation_Train_Test : 일반 클래스를 증강하여 다시 fine tuning 진행 및 train test accuracy 계산
--
+- crawler.py : 
+- preprocess.py : 
+- kobert_classifier.py :
+- topic_summary.py :
+
 ### data
 - crawling
+  - f
 - preprocess
+  - f
+- labeling_total.xlsx : 
+
+### model
+- kobert_finetune
+  - Train_Test_Accruacy : 라벨링 데이터로 KoBERT를 fine tuning 진행 및 train test accuracy 계산
+  - Augemantation_Train_Test : 일반 클래스를 증강하여 다시 fine tuning 진행 및 train test accuracy 계산
+- topic_summary
+  - review_topic_summarization : 
+
+### result
+- sentiment : 텍스트 전처리 후 각 문장별 감정 분류 수행 결과
+- topic : 각 문장과 그에 따른 토픽 결과
+- summary : 각 토픽별 요약 문장 결과
 
 ## Reference
 - KoBERT
