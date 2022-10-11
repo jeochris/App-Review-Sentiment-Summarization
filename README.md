@@ -76,14 +76,16 @@
 
 ![image](https://user-images.githubusercontent.com/72757567/195087801-41dc584d-16f6-4187-b20d-349c8c86bdaf.png)
 
+## End-to-End Inference
+위 Overview에서 설명한 전체 과정을 한꺼번에 inference할 수 있는 end-to-end pipeline code를 구성
 
-## Dependencies
+### Dependencies
 
 * Python 3.9
 * PyTorch 1.12.1
 * dependencies in requirements.txt
 
-## How to run
+### How to run
 1. Clone this repository.
 ```
 git clone https://github.com/jeochris/App-Review-Sentiment-Summarization.git
@@ -113,8 +115,15 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
   * Sentiment you want to find out.
   * Three options {negative, positive, personal}
   
-## Result
-(excel)
+### Result
+'Sleep Cycle' 앱 기준으로 결과 확인
+1. Crawling, Preprocess, Sentiment Analysis
+
+2. Topic Modeling
+
+3. Summary
+
+### Result Anaylsis
 
 ## File Description
 ### main

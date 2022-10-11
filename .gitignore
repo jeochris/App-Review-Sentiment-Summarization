@@ -5,4 +5,7 @@ __pycache__
 *.pt
 *.xlsx
 !labeling_total.xlsx
+!review_nouns_topic_슬립사이클_None_negative.xlsx
+!topic_and_summary_슬립사이클_None_negative.xlsx
+!predicted_reviews_슬립사이클.xlsx
 *.csv
