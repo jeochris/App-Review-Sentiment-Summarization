@@ -74,6 +74,7 @@
   - BART : Transformer의 Bidirectional Encoder, Auto-Regressive Decoder를 합쳐서 pre-train한 모델 (denoising autoencoder) 
 - 같은 토픽으로 분류된 문장끼리 모아 한 문단으로 묶은 후 KoBART-summarization 수행
 
+![image](https://user-images.githubusercontent.com/72757567/195087801-41dc584d-16f6-4187-b20d-349c8c86bdaf.png)
 
 
 ## Dependencies
