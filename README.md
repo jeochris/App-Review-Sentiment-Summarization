@@ -159,10 +159,10 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 
 ### model
 - kobert_finetune
-  - Train_Test_Accruacy : 라벨링 데이터로 KoBERT를 fine tuning 진행 및 train test accuracy 계산
-  - Augemantation_Train_Test : 일반 클래스를 증강하여 다시 fine tuning 진행 및 train test accuracy 계산
+  - Train_Test_Accruacy.ipynb : 라벨링 데이터로 KoBERT를 fine tuning 진행 및 train test accuracy 계산
+  - Augemantation_Train_Test.ipynb : 일반 클래스를 증강하여 다시 fine tuning 진행 및 train test accuracy 계산
 - topic_summary
-  - review_topic_summarization : 
+  - review_topic_summarization.ipynb : 
 
 ### result
 - sentiment : 텍스트 전처리 후 각 문장별 감정 분류 수행 결과
