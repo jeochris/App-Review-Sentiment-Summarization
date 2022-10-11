@@ -39,6 +39,9 @@
   - 개선 : 긍정에도 부정에도 속하지 않는 개선 내용을 담는 문장에 대한 클래스
   - 일반 : 개인적인 이야기, 의미없는 이야기 등 기타 문장에 대한 클래스
   - [라벨링 결과](https://github.com/jeochris/App-Review-Sentiment-Summarization/blob/main/data/labeling_total.xlsx)
+  
+![image](https://user-images.githubusercontent.com/72757567/195073668-abfdb84b-9b1e-48aa-8b8d-604c610864f1.png)
+
 - pre-trained KoBERT를 활용하여 4가지 클래스로 분류하는 classification fine-tuning 진행
 - 자세한 코드는 model/kobert_finetune/Train_Test_Accuracy.ipynb 파일 확인
 
@@ -64,6 +67,7 @@
 - 각 감정 클래스 내에서 BERTopic 수행
   - 보다 좋은 토픽 추출을 위해 각 문장에서 명사만 남기고 BERTopic 수행
 
+![image](https://user-images.githubusercontent.com/72757567/195073961-a128c968-4747-43b6-a2db-dbe0dabaf915.png)
 
 
 ## more logic?
