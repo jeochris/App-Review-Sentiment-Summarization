@@ -44,6 +44,7 @@
 
 - pre-trained KoBERT를 활용하여 4가지 클래스로 분류하는 classification fine-tuning 진행
 - 자세한 코드는 `model/kobert_finetune/Train_Test_Accuracy.ipynb` 파일 확인
+- inference 상황에서 학습된 모델 활용 - `kobert_classifier.py`
 
 ![image](https://user-images.githubusercontent.com/72757567/195069618-c1c59a66-a3f5-4314-a777-6fbf40abb72b.png)
 
@@ -76,6 +77,7 @@
   - BART : Transformer의 Bidirectional Encoder, Auto-Regressive Decoder를 합쳐서 pre-train한 모델 (denoising autoencoder) 
 - 같은 토픽으로 분류된 문장끼리 모아 한 문단으로 묶은 후 KoBART-summarization 수행
 - 자세한 코드는 `model/topic_summary/review_topic_summarization.ipynb` 파일 확인
+- inference 상황에서도 동일한 topic modeling & summarization 진행 - `topic_summary.py`
 
 ![image](https://user-images.githubusercontent.com/72757567/195087801-41dc584d-16f6-4187-b20d-349c8c86bdaf.png)
 
