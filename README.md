@@ -168,6 +168,7 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 ### data
 - crawling
   - `PlaystoreReviewCrawling_first.ipynb` : playstore 리뷰데이터를 크롤링하는 코드 (초안)
+  - `PlaystoreReviewCrawling_final.ipynb` : 구글 플레이스토어의 리뷰 창을 열어 리뷰를 크롤링하는 코드. 너무 많은 리뷰가 있는 경우를 고려해 스크롤은 8분으로 제한. json 형태로 저장한 뒤 샘플링 진행
 - preprocess
   - `Preprocessing_with_TextRank_KoBERT_KeyBert.ipynb` : 문장 분리 / 품사 개수 기준 / 불용어 제거 등의 전처리 및 전처리 데이터셋을 기반으로 진행한 Text-Rank / KoBERT / KeyBERT
 - `labeling_total.xlsx` : 라벨링 결과 excel sheet
