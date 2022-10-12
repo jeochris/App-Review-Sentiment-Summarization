@@ -72,6 +72,7 @@
 - Easy Data Augmentation (EDA) 방식을 활용
   - SR, RI, RD, RS를 stochastic하게 적용
   - `` 파일 확인
+  - `model/review_data_augmentation/Text_Augmentation.ipynb` 파일 확인
 - 모델 성능은 오히려 감소
   - 증강 전 데이터 자체가 부족, 일반 문장 간의 공통점이 적기 때문인 것으로 판단
   - `model/kobert_finetune/Augemantation_Train_Test.ipynb` 파일 확인
@@ -167,9 +168,9 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 
 ### data
 - crawling
-  - f
+  - `PlaystoreReviewCrawling_first.ipynb` : 
 - preprocess
-  - f
+  - `Preprocessing_with_TextRank_KoBERT_KeyBert`
 - `labeling_total.xlsx` : 라벨링 결과 excel sheet
 
 ### model
@@ -179,6 +180,8 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
   - `sentiment_analysis_experiment.ipynb` : nlp 감성분석에 많이 사용하는 네이버 영화 리뷰 데이터를 통한 어플리케이션 리뷰 라벨링
 - topic_summary
   - `review_topic_summarization.ipynb` : 감성이 label 된 문장들을 단어 단위로 쪼갠 후, 명사들만 사용하여 토픽 모델링(BERTopic)을 수행. 나누어진 토픽들을 한 문단으로 합친 후 요약모델(kobart summarization)을 사용하여 한 문장으로 요약.
+- review_data_augmentation
+  - `Text_Augmentation.ipynb` : 
 - review_similarity (추가 task)
   - `review_similarity_by_app.ipynb` : 긍정 리뷰일수록 비슷한 리뷰가 많을 것이라는 가정하에 진행한 과정. 전처리 과정을 거쳐 라벨링한 어플리케이션 리뷰 데이터에 대한 감정별 유사도 측정
   - `review_similarity_by_sentiment.ipynb` : App별 유사한 리뷰가 얼마나 많은가를 확인하기 위한 과정. 전처리 하지 않은 리뷰를 전처리 후 App별 전체 리뷰 중 유사 리뷰 비율 확인
