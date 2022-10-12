@@ -16,11 +16,12 @@
 - Background: 
   - 로드맵 설정은 PM의 큰 고민
   - 리뷰를 통해 인사이트를 얻을 수 있으나 그 수가 너무 많음
-- 기획 의도
+- 기획 내용
   - 리뷰를 감정별-토픽별로 계층화하여 분리
   - 이후 각 토픽별로 요약하여 인사이트를 한줄로 표현함 
 - 해결 방법 
-  - Playstore Review Data를 확보 
+  - Playstore Review Data를 확보
+  - 전처리 진행 (문장 분리 / stop word 설정 / pos 기준 설정 등) 
   - KoBERT를 활용하여 감정 분류 
   - BERTopic을 활용하여 토픽 분류 
   - KoBART를 활용하여 리뷰 요약 
