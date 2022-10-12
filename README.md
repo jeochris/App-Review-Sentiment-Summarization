@@ -136,7 +136,7 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 - Result : result/summary/topic_and_summary_슬립사이클_None_negative.xlsx
 
 ## Result Anaylsis
-'Sleep Cycle' 앱의 1점, 5점 리뷰 내 부정 리뷰 문장 기준으로 결과 확인 및 분석<br>
+'Sleep Cycle' 앱의 1점, 5점 리뷰 내 부정 리뷰 문장 기준으로 결과 확인 및 분석 - `--rating` 옵션 추가<br>
 (1점 리뷰 : 이탈 예정 유저, 5점 리뷰 : 충성 유저로 간주)
 
 ![image](https://user-images.githubusercontent.com/72757567/195092233-7e05867b-dca4-4de3-85b2-4ce668f84c42.png)
@@ -159,10 +159,10 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 
 ### model
 - kobert_finetune
-  - Train_Test_Accruacy.ipynb : 라벨링 데이터로 KoBERT를 fine tuning 진행 및 train test accuracy 계산
-  - Augemantation_Train_Test.ipynb : 일반 클래스를 증강하여 다시 fine tuning 진행 및 train test accuracy 계산
+  - Train_Test_Accruacy.ipynb : 라벨링 데이터로 KoBERT를 fine tuning 진행 및 train test accuracy 계산.
+  - Augemantation_Train_Test.ipynb : 일반 클래스를 증강하여 다시 fine tuning 진행 및 train test accuracy 계산.
 - topic_summary
-  - review_topic_summarization.ipynb : 
+  - review_topic_summarization.ipynb : 감성이 label 된 문장들을 단어 단위로 쪼갠 후, 명사들만 사용하여 토픽 모델링(BERTopic)을 수행. 나누어진 토픽들을 한 문단으로 합친 후 요약모델(kobart summarization)을 사용하여 한 문장으로 요약.
 
 ### result
 - sentiment : 텍스트 전처리 후 각 문장별 감정 분류 수행 결과
