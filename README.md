@@ -174,6 +174,12 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 - `labeling_total.xlsx` : 라벨링 결과 excel sheet
 
 ### model
+- playstore_review_crawling
+  - `PlaystoreReviewCrawling_first.ipynb` : playstore 리뷰데이터를 크롤링하는 코드 (초안) 
+- preprocessing
+  - `Preprocessing_with_TextRank_KoBERT_KeyBert.ipynb` : 문장 분리 / 품사 개수 기준 / 불용어 제거 등의 전처리 및 전처리 데이터셋을 기반으로 진행한 Text-Rank / KoBERT / KeyBERT 
+- review_data_augmentation_EDA
+  - `Text_Augmentation.ipynb` : KorEDA / textattack 라이브러리를 사용한 Text Data Augmentation
 - kobert_finetune
   - `Train_Test_Accruacy.ipynb` : 라벨링 데이터로 KoBERT를 fine tuning 진행 및 train test accuracy 계산
   - `Augemantation_Train_Test.ipynb` : 일반 클래스를 증강하여 다시 fine tuning 진행 및 train test accuracy 계산
