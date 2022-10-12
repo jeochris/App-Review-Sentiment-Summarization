@@ -146,25 +146,31 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 
 ## File Description
 ### main
-- main.py : 
-- crawler.py : 
-- preprocess.py : 
-- kobert_classifier.py :
-- topic_summary.py :
+- `main.py` : 전체 end-to-end pipeline 수행
+- `crawler.py` : 입력된 어플을 플레이스토어에 검색 후, 연속적인 스크롤을 통해 전체 리뷰를 크롤링하여 dictionary 형식으로 저장
+- `preprocess.py` : 각 리뷰에 대해 문장 단위 분할, tokenization을 통한 전처리, 일정 수준 이상 짧은 문장 제외 등의 총체적인 text preprocess 수행
+- `kobert_classifier.py` : 학습한 fine-tuned KoBERT 모델을 바탕으로 preprocess된 문장들에 대해 sentiment classification task 수행 및 결과 저장
+- `topic_summary.py`
+  - `retrive_topic` : 입력된 sentiment로 분류된 리뷰 문장들에 대해 BERTopic을 바탕으로 토픽 모델링 수행
+  - `summary` : 앞서 같은 토픽으로 분류된 리뷰 문장을 concat한 이후 KoBART-summarization을 바탕으로 요약 수행
 
 ### data
 - crawling
   - f
 - preprocess
   - f
-- labeling_total.xlsx : 
+- `labeling_total.xlsx` : 라벨링 결과 excel sheet
 
 ### model
 - kobert_finetune
-  - Train_Test_Accruacy.ipynb : 라벨링 데이터로 KoBERT를 fine tuning 진행 및 train test accuracy 계산.
-  - Augemantation_Train_Test.ipynb : 일반 클래스를 증강하여 다시 fine tuning 진행 및 train test accuracy 계산.
+  - `Train_Test_Accruacy.ipynb` : 라벨링 데이터로 KoBERT를 fine tuning 진행 및 train test accuracy 계산
+  - `Augemantation_Train_Test.ipynb` : 일반 클래스를 증강하여 다시 fine tuning 진행 및 train test accuracy 계산
+  - `sentiment_analysis_experiment.ipynb` : nlp 감성분석에 많이 사용하는 네이버 영화 리뷰 데이터를 통한 어플리케이션 리뷰 라벨링
 - topic_summary
-  - review_topic_summarization.ipynb : 감성이 label 된 문장들을 단어 단위로 쪼갠 후, 명사들만 사용하여 토픽 모델링(BERTopic)을 수행. 나누어진 토픽들을 한 문단으로 합친 후 요약모델(kobart summarization)을 사용하여 한 문장으로 요약.
+  - `review_topic_summarization.ipynb` : 감성이 label 된 문장들을 단어 단위로 쪼갠 후, 명사들만 사용하여 토픽 모델링(BERTopic)을 수행. 나누어진 토픽들을 한 문단으로 합친 후 요약모델(kobart summarization)을 사용하여 한 문장으로 요약.
+- review_similarity (추가 task)
+  - `review_similarity_by_app.ipynb` : 긍정 리뷰일수록 비슷한 리뷰가 많을 것이라는 가정하에 진행한 과정. 전처리 과정을 거쳐 라벨링한 어플리케이션 리뷰 데이터에 대한 감정별 유사도 측정
+  - `review_similarity_by_sentiment.ipynb` : App별 유사한 리뷰가 얼마나 많은가를 확인하기 위한 과정. 전처리 하지 않은 리뷰를 전처리 후 App별 전체 리뷰 중 유사 리뷰 비율 확인
 
 ### result
 - sentiment : 텍스트 전처리 후 각 문장별 감정 분류 수행 결과
