@@ -22,9 +22,9 @@
 - 해결 방법 
   - Playstore Review Data를 확보
   - 전처리 진행 (문장 분리 / stop word 설정 / pos 기준 설정 등) 
-  - KoBERT를 활용하여 감정 분류 
+  - KoBERT fine-tuning을 활용하여 감정 분류 
   - BERTopic을 활용하여 토픽 분류 
-  - KoBART를 활용하여 리뷰 요약 
+  - KoBART-summarization를 활용하여 리뷰 요약 
   - 평점별로 최종 분류
 
 **2. 리뷰 데이터 확보**
@@ -72,7 +72,7 @@
 - Easy Data Augmentation (EDA) 방식을 활용
   - SR, RI, RD, RS를 stochastic하게 적용
   - `` 파일 확인
-  - `model/review_data_augmentation/Text_Augmentation.ipynb` 파일 확인
+  - `model/review_data_augmentation_EDA/Text_Augmentation.ipynb` 파일 확인
 - 모델 성능은 오히려 감소
   - 증강 전 데이터 자체가 부족, 일반 문장 간의 공통점이 적기 때문인 것으로 판단
   - `model/kobert_finetune/Augemantation_Train_Test.ipynb` 파일 확인
@@ -168,26 +168,20 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 
 ### data
 - crawling
-  - `PlaystoreReviewCrawling_first.ipynb` : 
+  - `PlaystoreReviewCrawling_first.ipynb` : playstore 리뷰데이터를 크롤링하는 코드 (초안)
 - preprocess
-  - `Preprocessing_with_TextRank_KoBERT_KeyBert`
+  - `Preprocessing_with_TextRank_KoBERT_KeyBert.ipynb` : 문장 분리 / 품사 개수 기준 / 불용어 제거 등의 전처리 및 전처리 데이터셋을 기반으로 진행한 Text-Rank / KoBERT / KeyBERT
 - `labeling_total.xlsx` : 라벨링 결과 excel sheet
 
 ### model
-- playstore_review_crawling
-  - `PlaystoreReviewCrawling_first.ipynb` : playstore 리뷰데이터를 크롤링하는 코드 (초안) 
-- preprocessing
-  - `Preprocessing_with_TextRank_KoBERT_KeyBert.ipynb` : 문장 분리 / 품사 개수 기준 / 불용어 제거 등의 전처리 및 전처리 데이터셋을 기반으로 진행한 Text-Rank / KoBERT / KeyBERT 
-- review_data_augmentation_EDA
-  - `Text_Augmentation.ipynb` : KorEDA / textattack 라이브러리를 사용한 Text Data Augmentation
 - kobert_finetune
   - `Train_Test_Accruacy.ipynb` : 라벨링 데이터로 KoBERT를 fine tuning 진행 및 train test accuracy 계산
   - `Augemantation_Train_Test.ipynb` : 일반 클래스를 증강하여 다시 fine tuning 진행 및 train test accuracy 계산
   - `sentiment_analysis_experiment.ipynb` : nlp 감성분석에 많이 사용하는 네이버 영화 리뷰 데이터를 통한 어플리케이션 리뷰 라벨링
 - topic_summary
-  - `review_topic_summarization.ipynb` : 감성이 label 된 문장들을 단어 단위로 쪼갠 후, 명사들만 사용하여 토픽 모델링(BERTopic)을 수행. 나누어진 토픽들을 한 문단으로 합친 후 요약모델(kobart summarization)을 사용하여 한 문장으로 요약.
-- review_data_augmentation
-  - `Text_Augmentation.ipynb` : 
+  - `review_topic_summarization.ipynb` : 감성이 label 된 문장들을 단어 단위로 쪼갠 후, 명사들만 사용하여 토픽 모델링(BERTopic)을 수행. 나누어진 토픽들을 한 문단으로 합친 후 요약모델(KoBART-summarization)을 사용하여 한 문장으로 요약.
+- review_data_augmentation_EDA
+  - `Text_Augmentation.ipynb` : KorEDA / textattack 라이브러리를 사용한 Text Data Augmentation
 - review_similarity (추가 task)
   - `review_similarity_by_app.ipynb` : 긍정 리뷰일수록 비슷한 리뷰가 많을 것이라는 가정하에 진행한 과정. 전처리 과정을 거쳐 라벨링한 어플리케이션 리뷰 데이터에 대한 감정별 유사도 측정
   - `review_similarity_by_sentiment.ipynb` : App별 유사한 리뷰가 얼마나 많은가를 확인하기 위한 과정. 전처리 하지 않은 리뷰를 전처리 후 App별 전체 리뷰 중 유사 리뷰 비율 확인
