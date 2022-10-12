@@ -193,7 +193,7 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
 
 ## Reference
 - Crawling 
-
+  - https://heytech.tistory.com/293
 - Preprocessing 
   - https://www.dinolabs.ai/288
   - https://velog.io/@seolini43/%ED%8C%8C%EC%9D%B4%EC%8D%AC-TextRank%ED%85%8D%EC%8A%A4%ED%8A%B8%EB%9E%AD%ED%81%AC%EB%9E%80..-%EA%B0%84%EB%8B%A8%ED%95%98%EA%B2%8C-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EA%B8%B0
