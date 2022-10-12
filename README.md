@@ -209,5 +209,5 @@ python main.py --app_name=미라클나잇 --rating=5 --sentiment=negative
   - https://github.com/seujung/KoBART-summarization
   - https://huggingface.co/gogamza/kobart-summarization
 - Data Augmentation
- - https://github.com/catSirup/KorEDA
- - https://www.analyticsvidhya.com/blog/2022/02/text-data-augmentation-in-natural-language-processing-with-texattack/
+  - https://github.com/catSirup/KorEDA
+  - https://www.analyticsvidhya.com/blog/2022/02/text-data-augmentation-in-natural-language-processing-with-texattack/
