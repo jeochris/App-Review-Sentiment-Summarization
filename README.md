@@ -71,7 +71,6 @@
 - 일반 클래스 리뷰 데이터가 부족하여 이에 대해 데이터 증강 -> 1201개의 일반 문장 확보
 - Easy Data Augmentation (EDA) 방식을 활용
   - SR, RI, RD, RS를 stochastic하게 적용
-  - `` 파일 확인
   - `model/review_data_augmentation_EDA/Text_Augmentation.ipynb` 파일 확인
 - 모델 성능은 오히려 감소
   - 증강 전 데이터 자체가 부족, 일반 문장 간의 공통점이 적기 때문인 것으로 판단
